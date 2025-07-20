@@ -1,10 +1,7 @@
+import "dotenv/config";
 import express from "express";
 import cors from "cors";
 const app = express();
-
-// app.use((req, res, next) => {
-//   res.json({ message: "En mantenimiento" });
-// });
 
 app.use(cors());
 app.use(express.json());
@@ -16,9 +13,15 @@ app.get("/", (req, res) => {
 import productsRouter from "./src/routes/products.router.js";
 app.use("/api", productsRouter);
 
+import authRouter from './src/routes/auth.routes.js';
+import bodyParser from "body-parser";
+
+app.use(bodyParser.json());
+app.use('/auth', authRouter);
+
 app.use((req, res, next) => {
   res.status(404).json({ error: "Not Found" });
 });
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
