@@ -17,6 +17,8 @@ export const login = (req, res) => {
         const token = jwt.sign(payload, process.env.JWT_SECRET_KEY, expiration);
         res.json({ token });
     } else {
-        return res.sendStatus(401).send();
+        return res.sendStatus(401);
     }
+
+    res.json({ message: "OK" });
 }

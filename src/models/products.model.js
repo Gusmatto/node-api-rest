@@ -3,7 +3,7 @@ import path from 'path';
 
 const __dirname = import.meta.dirname;
 const jsonPath = path.join(__dirname, './products.json');
-const json = fs.readFileSync(jsonPath, 'utf8');
+const json = fs.readFileSync(jsonPath, 'utf-8');
 const products = JSON.parse(json);
 
 import { db } from '../data/data.js';
